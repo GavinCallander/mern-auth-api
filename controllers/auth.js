@@ -17,9 +17,7 @@ ROUTER.post('/signup', (req, res) => {
             password: hash
         })
     })
-    .then(createdUser => {
-        res.json(createdUser);
-    })
+    .then(createdUser => res.json(createdUser))
     .catch(err => {
         console.log(err);
         res.json(err);
