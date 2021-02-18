@@ -2,6 +2,8 @@ const BCRYPT = require('bcrypt');
 const DB = require('../models');
 const ROUTER = require('express').Router();
 
+const { createUserToken } = require('../middleware/auth');
+
 // login - POST '/api/login'
 ROUTER.post('/login', (req, res) => {
     res.json({ message: 'Logging in' });
@@ -17,7 +19,7 @@ ROUTER.post('/signup', (req, res) => {
             password: hash
         })
     })
-    .then(createdUser => res.json(createdUser))
+    .then(createdUser => res.json({ token: createUserToken(req, createdUser) }))
     .catch(err => {
         console.log(err);
         res.json(err);
