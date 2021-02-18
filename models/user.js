@@ -1,7 +1,14 @@
 const MONGOOSE = require('mongoose');
 
 const OPTIONS = {
-    timestamps: true
+    timestamps: true,
+    toJSON: {
+        virtuals: true,
+        transform: (_doc, userDocToReturn) => {
+            delete userDocToReturn.password;
+            return userDocToReturn;
+        }
+    }
 };
 
 const userSchema = new MONGOOSE.Schema({
