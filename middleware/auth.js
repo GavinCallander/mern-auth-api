@@ -1,10 +1,11 @@
+require('dotenv').config();
 const DB = require('../models');
 const PASSPORT = require('passport');
 const JWT_PASSPORT = require('passport-jwt');
 
 const OPTIONS = {
     jwtFromRequest: JWT_PASSPORT.ExtractJwt.fromAuthHeaderAsBearerToken(),
-    secretOrKey: 'supersecretstring'
+    secretOrKey: process.env.JWT_SECRET
 };
 
 const findUser = (jwt_payload, done) => {
