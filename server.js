@@ -12,7 +12,7 @@ APP.get('/', (req, res) => {
     res.json({ message: 'MERN app API Home' });
 });
 
-APP.use('/api', require('./controllers/auth'));
+APP.use('/api', require('./controllers/users'));
 
 APP.listen(process.env.PORT || 3001, () => {
     console.log(`Keeping it ${process.env.PORT}`);

@@ -2,6 +2,7 @@ require('dotenv').config();
 const BCRYPT = require('bcrypt');
 const DB = require('../models');
 const PASSPORT = require('passport');
+const JWT = require('jsonwebtoken');
 const JWT_PASSPORT = require('passport-jwt');
 
 const OPTIONS = {
@@ -29,7 +30,7 @@ const createUserToken = (req, user) => {
         throw err;
     }
     else {
-        return jwt.sign(
+        return JWT.sign(
             { id: user._id, email: user.email },
             process.env.JWT_SECRET,
             { expiresIn: 1200 }
